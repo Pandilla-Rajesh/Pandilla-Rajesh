@@ -1,0 +1,61 @@
+import React, { useState } from 'react' 
+
+  
+
+const DalayInput = () => { 
+
+  
+
+const [inputval, setInpuval] = useState('') 
+
+const [timedout, setTimedout]= useState(null) 
+
+  
+
+const handleInput = (event) =>{ 
+
+    const newValue = event.target.value 
+
+    if(timedout){ 
+
+        clearTimeout(timedout) 
+
+    } 
+
+  
+
+    const newTimeOut = setTimeout(()=>{ 
+
+        setInpuval(newValue) 
+
+    }, 500) 
+
+    setTimedout(newTimeOut) 
+
+    console.log(inputval, "line18") 
+
+} 
+
+  
+
+  return ( 
+
+    <> 
+
+        <div><h1>DalayInput</h1></div> 
+
+        <div> 
+
+            <input type='text' value={inputval} onChange={handleInput} placeholder='typesomething' /> 
+
+        </div> 
+
+    </> 
+
+  ) 
+
+} 
+
+  
+
+export default DalayInput 
