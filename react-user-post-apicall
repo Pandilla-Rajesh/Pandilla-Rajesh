@@ -1,0 +1,51 @@
+ const [inputval, setinputval] = useState("posts"); 
+
+  const [list, setlist] = useState(); 
+
+  const handlechange = (e) => { 
+
+    setinputval(e.target.value) 
+
+  } 
+
+  useEffect(() => { 
+
+    fetch(`https://jsonplaceholder.typicode.com/${inputval}`).then(res => res.json()).then(data => setlist(data)) 
+
+  }, [inputval]) 
+
+  console.log(list) 
+
+  return ( 
+
+    <> 
+
+      <div className=' d-flex mx-auto mt-5'> 
+
+  
+
+        <Form.Check type="radio" className='ms-5' value="posts" checked={inputval === "posts"} onChange={handlechange} /> Posts 
+
+  
+
+        <Form.Check type="radio" className='ms-4' value="users" checked={inputval === "users"} onChange={handlechange} /> Users 
+
+  
+
+      </div> 
+
+      <div className='mt-5 ms-5'> 
+
+        {list && list?.map((el) => { 
+
+          return <h6>{el.title || el.name}</h6> 
+
+        })} 
+
+      </div> 
+
+    </> 
+
+  ) 
+
+ 
